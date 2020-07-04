@@ -186,10 +186,10 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
     - 将求出的$\kappa$代入原优化函数，得出优化函数的最优值
     $$
     \begin{aligned}
-    f(\kappa^*,\gamma^0)& =\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{*}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
-    & =\sum\limits_{i=1}^{l}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
-    & =\sum\limits_{j=1}^{n}\sum\limits_{i\in o_j}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
-    & =\sum\limits_{j=1}^{n}\left(\frac{\left(\sum_{i\in o_j}\sqrt{\omega_i}\right)^2}{f_{j}^{c}}+\sum\limits_{i\in o_j}\frac{s_i}{r_{i,j}}\right) 
+    & f(\kappa^*,\gamma^0)&& =\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{*}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
+    & && =\sum\limits_{i=1}^{l}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
+    & && =\sum\limits_{j=1}^{n}\sum\limits_{i\in o_j}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
+    & && =\sum\limits_{j=1}^{n}\left(\frac{\left(\sum_{i\in o_j}\sqrt{\omega_i}\right)^2}{f_{j}^{c}}+\sum\limits_{i\in o_j}\frac{s_i}{r_{i,j}}\right) 
     \end{aligned}
     $$
 ### 4.2 任务放置问题
@@ -204,23 +204,22 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
     & 式中，&&W=\left(\sqrt{\omega_1},\sqrt{\omega_2},\cdots,\sqrt{\omega_m}\right)\cr
     & && S=\left(s_1,s_2,\cdots,s_m\right)\cr
     & && P=\left(p_1,p_2,\cdots,p_m\right)\cr
-    & && \mathbf{C}=\left[
-    \begin{matrix}
+    & && \mathbf{C}=
+    \begin{bmatrix}
     \frac{1}{\sqrt{f_1^c}} & 0 & \cdots & 0 & 0 \cr
     0 & \frac{1}{\sqrt{f_2^c}} & \cdots & 0 & 0 \cr
     \vdots & \vdots & \ddots & \vdots & \vdots \cr
     0 & 0 & \cdots & \frac{1}{\sqrt{f_{m-1}^l}} & 0 \cr
-    0 & 0 & \cdots & 0 & \frac{1}{\sqrt{f_m^l}} \cr
-    \end{matrix} 
-    \right]\cr
-    & && \mathbf{R}=\left[
-    \begin{matrix}
+    0 & 0 & \cdots & 0 & \frac{1}{\sqrt{f_m^l}}
+    \end{bmatrix} \cr
+    & && \mathbf{R}=
+    \begin{bmatrix}
     r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \cr
     r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \cr
     \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \cr
     r_{m1} & \cdots & r_{mn} & 0 & \cdots & 0
-    \end{matrix}
-    \right]_{m\times{(n+m)}}
+    \end{bmatrix}
+    _{m\times{(n+m)}}
     \end{aligned}
     $$
   - 连续函数近似求解
