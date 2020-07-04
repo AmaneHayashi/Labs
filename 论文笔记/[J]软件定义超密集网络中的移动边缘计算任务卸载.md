@@ -175,10 +175,10 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
     $$L(\kappa,\nu)=f(\kappa,\gamma^0)+\sum\limits_{j}\nu_j\left(\sum\limits_{i\in o_j}\kappa_i^j-1\right)$$
     - 利用*KKT*条件求出$\kappa$的值
       $$
-      \begin{aligned}
-      &\min && E(\mathbf{x,\gamma,\kappa}), \cr
-      &s.t. && C_1 \sim C_4
-      \end{aligned}
+      \begin{cases}
+      \frac{2\omega_i}{\left(\kappa_i^j\right)^3f_j^c}, &if\ i=j \cr 
+      0, &otherwise
+      \end{cases}
       $$
       $$
       \begin{cases}
