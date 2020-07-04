@@ -97,8 +97,8 @@
     - *BS*将相应的任务请求发送到*SD-UDN*控制器
     - *SD-UDN*控制器更新所有信息表，**根据任务的延迟和能耗，给出移动设备的任务卸载策略和边缘云的资源分配策略**
 ### 3.2 网络模型
-  - *SD-UDN*共有$n$个基站，每个基站有**一个**边缘云，边缘云集合为$B=\left\{b_1,b_2,\cdots,b_n\right\}$
-  - 每个移动设备有**一个**任务，移动设备集合为$U=\left\{u_1,u_2,\cdots,u_m\right\}$
+  - *SD-UDN*共有$n$个基站，每个基站有**一个**边缘云，边缘云集合为$B=\{b_1,b_2,\cdots,b_n\}$
+  - 每个移动设备有**一个**任务，移动设备集合为$U=\{u_1,u_2,\cdots,u_m\}$
   - 每个任务由二元组$Q_i=(\omega_i,s_i)$构成，$\omega_i$为计算量（*CPU*周期数），$s_i$为数据大小
   - 向用户$u_i$提供服务的*BS*集合记为$\mathcal{A}(u_i)$
 
@@ -117,19 +117,19 @@
     - 执行能耗：对于用户$u_i$，执行时延为$\epsilon_i^L$，式中$\rho_{i}$为每个*CPU*周期消耗的能量的功率系数
     $$\epsilon_i^L=\rho_{i}\omega_i$$
   - 任务卸载执行：
-    - 执行时延：由卸载时延与处理时延组成（回传时延可忽略），对于用户$u_i$，执行时延为$t_i^E$，式中$\gamma_i\in\mathcal{A}(u_i)$为用户卸载的边缘云，$\kappa_i^{\gamma_i}$为任务卸载到边缘云的比例，边缘云的*CPU*运算能力由集合$f^c=\left\{f_1^c,f_2^c,\cdots,f_n^c\right\}$决定
+    - 执行时延：由卸载时延与处理时延组成（回传时延可忽略），对于用户$u_i$，执行时延为$t_i^E$，式中$\gamma_i\in\mathcal{A}(u_i)$为用户卸载的边缘云，$\kappa_i^{\gamma_i}$为任务卸载到边缘云的比例，边缘云的*CPU*运算能力由集合$f^c=\{f_1^c,f_2^c,\cdots,f_n^c\}$决定
     $$t_i^E=\frac{\omega_i}{\kappa_i^{\gamma_i}f_{\gamma_i}^{c}}+\frac{s_i}{r_{i,\gamma_{i}}}$$ 
 
 ### 3.5 问题描述
   - 问题组成：**任务放置+资源分配**
   - 决策变量：
-    - $x_i$（$0-1$决策变量，任务$i$在本地/边缘侧处理，由集合$\mathrm{X}=\left\{x_1,x_2,\cdots,x_m\right\}$指定）
-    - $\gamma_i$（处理任务$i$的边缘云，由集合$\gamma=\left\{\gamma_1,\gamma_2,\cdots,\gamma_m\right\}$指定）
-    - $\kappa_i$（为任务$i$分配的计算资源比例，由集合$\kappa=\left\{\kappa_1,\kappa_2,\cdots,\kappa_m\right\}$指定）
+    - $x_i$（$0-1$决策变量，任务$i$在本地/边缘侧处理，由集合$\mathrm{X}=\{x_1,x_2,\cdots,x_m\}$指定）
+    - $\gamma_i$（处理任务$i$的边缘云，由集合$\gamma=\{\gamma_1,\gamma_2,\cdots,\gamma_m\}$指定）
+    - $\kappa_i$（为任务$i$分配的计算资源比例，由集合$\kappa=\{\kappa_1,\kappa_2,\cdots,\kappa_m\}$指定）
   - 目标函数：所有用户设备的平均处理时延
   $$
   \begin{aligned}
-  &E(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}t_{i}^{L}+\left(1-x_i\right)t_i^E\right] \\ 
+  &E(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}t_{i}^{L}+\left(1-x_i\right)t_i^E\right] \cr 
   &式中，t_{i}^{L}=\frac{\omega_i}{f_i^l}，t_i^E=\frac{\omega_i}{\kappa_i^{\gamma_i}f_{\gamma_i}^{c}}+\frac{s_i}{r_{i,\gamma_i}}
   \end{aligned}
   $$
@@ -156,12 +156,12 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
   - 化为关于$\kappa$的凸优化问题
     - 化简函数形式：记$\lambda=(\mathbf{x},\gamma)$，对于给定的$\lambda=\lambda^0\in\mathbb{H}$，此时$x_i=0$，假设分配给用户$i$的边缘云为$j$，总共有$l$个用户选择卸载到边缘云，则函数可化为下式，此时优化问题的约束只有$C_4$
     $$f(\kappa,\gamma^0)=\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{j}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right)$$
-    - 证明*Hessian*矩阵正定：此时函数$f(\kappa,\gamma^0)$为$\kappa=\left\{\kappa_1,\kappa_2,\cdots,\kappa_l\right\}$的函数，则其*Hessian*矩阵如下式，可以看出*Hessian*矩阵为对角矩阵，所有特征值均为正数，故*Hessian*矩阵正定，故原问题为关于$\kappa_i$的凸优化问题
+    - 证明*Hessian*矩阵正定：此时函数$f(\kappa,\gamma^0)$为$\kappa=\{\kappa_1,\kappa_2,\cdots,\kappa_l\}$的函数，则其*Hessian*矩阵如下式，可以看出*Hessian*矩阵为对角矩阵，所有特征值均为正数，故*Hessian*矩阵正定，故原问题为关于$\kappa_i$的凸优化问题
     $$A=
     \begin{bmatrix}
-    \frac{\partial^2{f}}{\partial^2{\kappa_1}} & \frac{\partial^2{f}}{\partial{\kappa_1}\partial{\kappa_2}} & \cdots & \frac{\partial^2{f}}{\partial{\kappa_1}\partial{\kappa_l}}\\
-    \frac{\partial^2{f}}{\partial{\kappa_2}\partial{\kappa_1}} & \frac{\partial^2{f}}{\partial^2{\kappa_2}} & \cdots & \frac{\partial^2{f}}{\partial{\kappa_2}\partial{\kappa_l}} \\
-    \vdots & \vdots & \ddots & \vdots \\
+    \frac{\partial^2{f}}{\partial^2{\kappa_1}} & \frac{\partial^2{f}}{\partial{\kappa_1}\partial{\kappa_2}} & \cdots & \frac{\partial^2{f}}{\partial{\kappa_1}\partial{\kappa_l}}\cr
+    \frac{\partial^2{f}}{\partial{\kappa_2}\partial{\kappa_1}} & \frac{\partial^2{f}}{\partial^2{\kappa_2}} & \cdots & \frac{\partial^2{f}}{\partial{\kappa_2}\partial{\kappa_l}} \cr
+    \vdots & \vdots & \ddots & \vdots \cr
     \frac{\partial^2{f}}{\partial{\kappa_l}\partial{\kappa_1}} & \frac{\partial^2{f}}{\partial{\kappa_l}\partial{\kappa_2}} & \cdots & \frac{\partial^2{f}}{\partial^2{\kappa_l}}
     \end{bmatrix} 
     ，式中\frac{{\partial^2{f}}}{\partial{\kappa_i}\partial{\kappa_j}}=
@@ -173,51 +173,51 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
   - 利用*KKT*条件求解
     - 将原优化函数写成*Lagrange*函数
     $$L(\kappa,\nu)=f(\kappa,\gamma^0)+\sum\limits_{j}\nu_j\left(\sum\limits_{i\in o_j}\kappa_i^j-1\right)$$
-    - 利用*KKT*条件求出$\kappa^*$
+    - 利用*KKT*条件求出$\kappa^*$的值
     $$
     \begin{aligned}
     & \begin{cases}
     \nabla f\left(\tilde{\kappa}_1^j,\tilde{\kappa}_2^j,\cdots,\tilde{\kappa}_n^j\right)+\sum\limits_{j}\nu_j\nabla\left(\sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1\right)=0 \cr 
     \sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1=0
-    \end{cases} \\
+    \end{cases} \cr
     & 解得\kappa_i^*=\frac{\sqrt{\omega_i}}{\sum_{i\in o_j}\sqrt{\omega_i}}
     \end{aligned}
     $$
     - 将求出的$\kappa^*$代入原优化函数，得出优化函数的最优值
     $$
     \begin{aligned}
-    f(\kappa^*,\gamma^0)& =\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{*}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \\
-    & =\sum\limits_{i=1}^{l}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \\
-    & =\sum\limits_{j=1}^{n}\sum\limits_{i\in o_j}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \\
+    f(\kappa^*,\gamma^0)& =\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{*}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
+    & =\sum\limits_{i=1}^{l}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
+    & =\sum\limits_{j=1}^{n}\sum\limits_{i\in o_j}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
     & =\sum\limits_{j=1}^{n}\left(\frac{\left(\sum_{i\in o_j}\sqrt{\omega_i}\right)^2}{f_{j}^{c}}+\sum\limits_{i\in o_j}\frac{s_i}{r_{i,j}}\right) 
     \end{aligned}
     $$
 ### 4.2 任务放置问题
   - 将原问题转换为单变量的$0-1$整数规划问题
-    - 改写优化变量：定义$\mathbf{Z}=(z_{ij})_{m\times(n+m)},z_{ij}\in\left\{0,1\right\}$替代$x$与$\gamma$，当$z_{ij}=1$时，任务$i$被卸载到边缘云（$j\le n$）或本地执行（$j=i+n$）
+    - 改写优化变量：定义$\mathbf{Z}=(z_{ij})_{m\times(n+m)},z_{ij}\in\{0,1\}$替代$x$与$\gamma$，当$z_{ij}=1$时，任务$i$被卸载到边缘云（$j\le n$）或本地执行（$j=i+n$）
     - 改写表达式：将优化问题写出下述形式，此时该问题为单变量$0-1$整数规划问题，为*NP-hard*问题
     $$
     \begin{aligned}
-    &\min\limits_{\mathbf{Z}} && {\Vert(W\mathbf{ZC})^T\Vert}_2^2+S\mathbf{ZR}, \\
-    &\ s.t. && x_{ij}\in\left\{0,1\right\} \\
-    & && \sum\limits_{j=1}^{n+1}z_{ij}=1,i=1,2,\cdots,m\\
-    & 式中，&&W=\left(\sqrt{\omega_1},\sqrt{\omega_2},\cdots,\sqrt{\omega_m}\right)\\
-    & && S=\left(s_1,s_2,\cdots,s_m\right)\\
-    & && P=\left(p_1,p_2,\cdots,p_m\right)\\
+    &\min\limits_{\mathbf{Z}} && {\Vert(W\mathbf{ZC})^T\Vert}_2^2+S\mathbf{ZR}, \cr
+    &\ s.t. && x_{ij}\in\{0,1\} \cr
+    & && \sum\limits_{j=1}^{n+1}z_{ij}=1,i=1,2,\cdots,m\cr
+    & 式中，&&W=\left(\sqrt{\omega_1},\sqrt{\omega_2},\cdots,\sqrt{\omega_m}\right)\cr
+    & && S=\left(s_1,s_2,\cdots,s_m\right)\cr
+    & && P=\left(p_1,p_2,\cdots,p_m\right)\cr
     & && \mathbf{C}=\left[
     \begin{matrix}
-    \frac{1}{\sqrt{f_1^c}} & 0 & \cdots & 0 & 0 \\
-    0 & \frac{1}{\sqrt{f_2^c}} & \cdots & 0 & 0 \\
-    \vdots & \vdots & \ddots & \vdots & \vdots \\
-    0 & 0 & \cdots & \frac{1}{\sqrt{f_{m-1}^l}} & 0 \\
-    0 & 0 & \cdots & 0 & \frac{1}{\sqrt{f_m^l}} \\
+    \frac{1}{\sqrt{f_1^c}} & 0 & \cdots & 0 & 0 \cr
+    0 & \frac{1}{\sqrt{f_2^c}} & \cdots & 0 & 0 \cr
+    \vdots & \vdots & \ddots & \vdots & \vdots \cr
+    0 & 0 & \cdots & \frac{1}{\sqrt{f_{m-1}^l}} & 0 \cr
+    0 & 0 & \cdots & 0 & \frac{1}{\sqrt{f_m^l}} \cr
     \end{matrix} 
-    \right]\\
+    \right]\cr
     & && \mathbf{R}=\left[
     \begin{matrix}
-    r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \\
-    r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \\
-    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+    r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \cr
+    r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \cr
+    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \cr
     r_{m1} & \cdots & r_{mn} & 0 & \cdots & 0
     \end{matrix}
     \right]_{m\times{(n+m)}}
