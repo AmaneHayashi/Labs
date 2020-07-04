@@ -97,8 +97,8 @@
     - *BS*将相应的任务请求发送到*SD-UDN*控制器
     - *SD-UDN*控制器更新所有信息表，**根据任务的延迟和能耗，给出移动设备的任务卸载策略和边缘云的资源分配策略**
 ### 3.2 网络模型
-  - *SD-UDN*共有$n$个基站，每个基站有**一个**边缘云，边缘云集合为$B=\left\{b_1,b_2,\cdots,b_n\right\}$
-  - 每个移动设备有**一个**任务，移动设备集合为$U=\left\{u_1,u_2,\cdots,u_m\right\}$
+  - *SD-UDN*共有$n$个基站，每个基站有**一个**边缘云，边缘云集合为$B=\{b_1,b_2,\cdots,b_n\}$
+  - 每个移动设备有**一个**任务，移动设备集合为$U=\{u_1,u_2,\cdots,u_m\}$
   - 每个任务由二元组$Q_i=(\omega_i,s_i)$构成，$\omega_i$为计算量（*CPU*周期数），$s_i$为数据大小
   - 向用户$u_i$提供服务的*BS*集合记为$\mathcal{A}(u_i)$
 
@@ -117,19 +117,19 @@
     - 执行能耗：对于用户$u_i$，执行时延为$\epsilon_i^L$，式中$\rho_{i}$为每个*CPU*周期消耗的能量的功率系数
     $$\epsilon_i^L=\rho_{i}\omega_i$$
   - 任务卸载执行：
-    - 执行时延：由卸载时延与处理时延组成（回传时延可忽略），对于用户$u_i$，执行时延为$t_i^E$，式中$\gamma_i\in\mathcal{A}(u_i)$为用户卸载的边缘云，$\kappa_i^{\gamma_i}$为任务卸载到边缘云的比例，边缘云的*CPU*运算能力由集合$f^c=\left\{f_1^c,f_2^c,\cdots,f_n^c\right\}$决定
+    - 执行时延：由卸载时延与处理时延组成（回传时延可忽略），对于用户$u_i$，执行时延为$t_i^E$，式中$\gamma_i\in\mathcal{A}(u_i)$为用户卸载的边缘云，$\kappa_i^{\gamma_i}$为任务卸载到边缘云的比例，边缘云的*CPU*运算能力由集合$f^c=\{f_1^c,f_2^c,\cdots,f_n^c\}$决定
     $$t_i^E=\frac{\omega_i}{\kappa_i^{\gamma_i}f_{\gamma_i}^{c}}+\frac{s_i}{r_{i,\gamma_{i}}}$$ 
 
 ### 3.5 问题描述
   - 问题组成：**任务放置+资源分配**
   - 决策变量：
-    - $x_i$（$0-1$决策变量，任务$i$在本地/边缘侧处理，由集合$\mathrm{X}=\left\{x_1,x_2,\cdots,x_m\right\}$指定）
-    - $\gamma_i$（处理任务$i$的边缘云，由集合$\gamma=\left\{\gamma_1,\gamma_2,\cdots,\gamma_m\right\}$指定）
-    - $\kappa_i$（为任务$i$分配的计算资源比例，由集合$\kappa=\left\{\kappa_1,\kappa_2,\cdots,\kappa_m\right\}$指定）
+    - $x_i$（$0-1$决策变量，任务$i$在本地/边缘侧处理，由集合$\mathrm{X}=\{x_1,x_2,\cdots,x_m\}$指定）
+    - $\gamma_i$（处理任务$i$的边缘云，由集合$\gamma=\{\gamma_1,\gamma_2,\cdots,\gamma_m\}$指定）
+    - $\kappa_i$（为任务$i$分配的计算资源比例，由集合$\kappa=\{\kappa_1,\kappa_2,\cdots,\kappa_m\}$指定）
   - 目标函数：所有用户设备的平均处理时延
   $$
   \begin{aligned}
-  &E(\bold{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}t_{i}^{L}+\left(1-x_i\right)t_i^E\right] \\ 
+  &E(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}t_{i}^{L}+\left(1-x_i\right)t_i^E\right] \\ 
   &式中，t_{i}^{L}=\frac{\omega_i}{f_i^l}，t_i^E=\frac{\omega_i}{\kappa_i^{\gamma_i}f_{\gamma_i}^{c}}+\frac{s_i}{r_{i,\gamma_i}}
   \end{aligned}
   $$
@@ -144,19 +144,19 @@
   - 优化目标：**最小化全部用户设备的平均处理时延**（*NP-hard*问题）
   $$
   \begin{aligned}
-  &\min && E(\bold{x,\gamma,\kappa}), \\
+  &\min && E(\mathbf{x,\gamma,\kappa}), \\
   &s.t. && C_1 \sim C_4
   \end{aligned}
   $$
 
 
 ## 4 高效的任务卸载方案
-$$f(\bold{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_i^l}+\left(1-x_i\right)\left(\frac{\omega_i}{\kappa_i^{\gamma_i}f_{\gamma_i}^{c}}+\frac{s_i}{r_{i,\gamma_i}}\right)\right]$$
+$$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_i^l}+\left(1-x_i\right)\left(\frac{\omega_i}{\kappa_i^{\gamma_i}f_{\gamma_i}^{c}}+\frac{s_i}{r_{i,\gamma_i}}\right)\right]$$
 ### 4.1 计算资源分配子问题
   - 化为关于$\kappa$的凸优化问题
-    - 化简函数形式：记$\lambda=(\bold{x},\gamma)$，对于给定的$\lambda=\lambda^0\in\mathbb{H}$，此时$x_i=0$，假设分配给用户$i$的边缘云为$j$，总共有$l$个用户选择卸载到边缘云，则函数可化为下式，此时优化问题的约束只有$C_4$
+    - 化简函数形式：记$\lambda=(\mathbf{x},\gamma)$，对于给定的$\lambda=\lambda^0\in\mathbb{H}$，此时$x_i=0$，假设分配给用户$i$的边缘云为$j$，总共有$l$个用户选择卸载到边缘云，则函数可化为下式，此时优化问题的约束只有$C_4$
     $$f(\kappa,\gamma^0)=\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{j}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right)$$
-    - 证明*Hessian*矩阵正定：此时函数$f(\kappa,\gamma^0)$为$\kappa=\left\{\kappa_1,\kappa_2,\cdots,\kappa_l\right\}$的函数，则其*Hessian*矩阵如下式，可以看出*Hessian*矩阵为对角矩阵，所有特征值均为正数，故*Hessian*矩阵正定，故原问题为关于$\kappa_i$的凸优化问题
+    - 证明*Hessian*矩阵正定：此时函数$f(\kappa,\gamma^0)$为$\kappa=\{\kappa_1,\kappa_2,\cdots,\kappa_l\}$的函数，则其*Hessian*矩阵如下式，可以看出*Hessian*矩阵为对角矩阵，所有特征值均为正数，故*Hessian*矩阵正定，故原问题为关于$\kappa_i$的凸优化问题
     $$A=
     \left[
     \begin{matrix}
@@ -196,17 +196,17 @@ $$f(\bold{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_i^
     $$
 ### 4.2 任务放置问题
   - 将原问题转换为单变量的$0-1$整数规划问题
-    - 改写优化变量：定义$\bold{Z}=(z_{ij})_{m\times(n+m)},z_{ij}\in\{0,1\}$替代$x$与$\gamma$，当$z_{ij}=1$时，任务$i$被卸载到边缘云（$j\le n$）或本地执行（$j=i+n$）
+    - 改写优化变量：定义$\mathbf{Z}=(z_{ij})_{m\times(n+m)},z_{ij}\in\{0,1\}$替代$x$与$\gamma$，当$z_{ij}=1$时，任务$i$被卸载到边缘云（$j\le n$）或本地执行（$j=i+n$）
     - 改写表达式：将优化问题写出下述形式，此时该问题为单变量$0-1$整数规划问题，为*NP-hard*问题
     $$
     \begin{aligned}
-    &\min\limits_{\bold{Z}} && {\Vert(W\bold{ZC})^T\Vert}_2^2+S\bold{ZR}, \\
+    &\min\limits_{\mathbf{Z}} && {\Vert(W\mathbf{ZC})^T\Vert}_2^2+S\mathbf{ZR}, \\
     &\ s.t. && x_{ij}\in\{0,1\} \\
     & && \sum\limits_{j=1}^{n+1}z_{ij}=1,i=1,2,\cdots,m\\
     & 式中，&&W=\left(\sqrt{\omega_1},\sqrt{\omega_2},\cdots,\sqrt{\omega_m}\right)\\
     & && S=\left(s_1,s_2,\cdots,s_m\right)\\
     & && P=\left(p_1,p_2,\cdots,p_m\right)\\
-    & && \bold{C}=\left[
+    & && \mathbf{C}=\left[
     \begin{matrix}
     \frac{1}{\sqrt{f_1^c}} & 0 & \cdots & 0 & 0 \\
     0 & \frac{1}{\sqrt{f_2^c}} & \cdots & 0 & 0 \\
@@ -215,7 +215,7 @@ $$f(\bold{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_i^
     0 & 0 & \cdots & 0 & \frac{1}{\sqrt{f_m^l}} \\
     \end{matrix} 
     \right]\\
-    & && \bold{R}=\left[
+    & && \mathbf{R}=\left[
     \begin{matrix}
     r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \\
     r_{11} & \cdots & r_{1n} & 0 & \cdots & 0 \\
@@ -227,11 +227,11 @@ $$f(\bold{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_i^
     $$
   - 连续函数近似求解
     - 定义连续变量$y_{ij}$，其满足$y_{ij}\ge 0,\sum\limits_{j=1}^{n+1}y_{ij}=1,i=1,2,\cdots,m$
-    - 线性函数$\phi^t(y_{ij})=\frac{y_{ij}}{y_{ij}^{t-1}+\epsilon}$，式中$t$为迭代次数，用$\phi^t(y_{ij})$替代$\bold{Z}$，则优化问题变为凸问题，可用*KKT*条件求解
+    - 线性函数$\phi^t(y_{ij})=\frac{y_{ij}}{y_{ij}^{t-1}+\epsilon}$，式中$t$为迭代次数，用$\phi^t(y_{ij})$替代$\mathbf{Z}$，则优化问题变为凸问题，可用*KKT*条件求解
     - 迭代算法求解：
       - 初始状态下，$y_{ij}^0=1-\epsilon$
       - $t=t+1$，将上一步求解出的$y_{ij}$记做$y_{ij}^{t-1}$，求解$\phi^t(y_{ij})$
-      - 用$\phi^t(y_{ij})$替换$\bold{Z}$，依据*KKT*条件求解出$y_{ij}$
+      - 用$\phi^t(y_{ij})$替换$\mathbf{Z}$，依据*KKT*条件求解出$y_{ij}$
       - 如果$\vert{y_{ij}^t-y_{ij}^{t-1}}\vert\lt\delta$，则$y_{ij}^*=y_{ij}^t$，否则继续迭代
     - 收敛性分析
       - 当$\vert{y_{ij}^t-y_{ij}^{t-1}}\vert\lt\delta$时，有
@@ -243,7 +243,7 @@ $$f(\bold{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_i^
       0, &if\ y_{ij}=0
       \end{cases}
       $$
-      - 因此，$\phi^t(y_{ij}^*)$近似等于$\bold{Z}$，对连续函数的求解与对原优化问题的求解相近
+      - 因此，$\phi^t(y_{ij}^*)$近似等于$\mathbf{Z}$，对连续函数的求解与对原优化问题的求解相近
 ## 5 模型评估
 ### 5.1 参数设置
   - 网络参数
