@@ -175,18 +175,15 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
     $$L(\kappa,\nu)=f(\kappa,\gamma^0)+\sum\limits_{j}\nu_j\left(\sum\limits_{i\in o_j}\kappa_i^j-1\right)$$
     - 利用*KKT*条件求出$\kappa$的值
     $$
-    \begin{aligned}
-    & \begin{cases}
+    \begin{cases}
     \nabla f\left(\tilde{\kappa}_1^j,\tilde{\kappa}_2^j,\cdots,\tilde{\kappa}_n^j\right)+\sum\limits_{j}\nu_j\nabla\left(\sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1\right)=0 \cr 
     \sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1=0
-    \end{cases} \cr
-    & 解得\kappa_i^*=\frac{\sqrt{\omega_i}}{\sum_{i\in o_j}\sqrt{\omega_i}}
-    \end{aligned}
+    \end{cases} \Longrightarrow \kappa_i^{*}=\frac{\sqrt{\omega_i}}{\sum_{i\in o_j}\sqrt{\omega_i}}
     $$
     - 将求出的$\kappa$代入原优化函数，得出优化函数的最优值
     $$
     \begin{aligned}
-    & f(\kappa^*,\gamma^0)&& =\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{*}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
+    & f(\kappa^{*},\gamma^0)&& =\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{*}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
     & && =\sum\limits_{i=1}^{l}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
     & && =\sum\limits_{j=1}^{n}\sum\limits_{i\in o_j}\left(\frac{\sqrt{\omega_i}\sum_{i\in o_j}\sqrt{\omega_i}}{f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
     & && =\sum\limits_{j=1}^{n}\left(\frac{\left(\sum_{i\in o_j}\sqrt{\omega_i}\right)^2}{f_{j}^{c}}+\sum\limits_{i\in o_j}\frac{s_i}{r_{i,j}}\right) 
