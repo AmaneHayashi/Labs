@@ -183,7 +183,7 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
     & 解得\kappa_i^*=\frac{\sqrt{\omega_i}}{\sum_{i\in o_j}\sqrt{\omega_i}}
     \end{aligned}
     $$
-    - 将求出的$\kappa^*$代入原优化函数，得出优化函数的最优值
+    - 将求出的$\kappa$代入原优化函数，得出优化函数的最优值
     $$
     \begin{aligned}
     f(\kappa^*,\gamma^0)& =\sum\limits_{i=1}^{l}\left(\frac{\omega_i}{\kappa_i^{*}f_{j}^{c}}+\frac{s_i}{r_{i,j}}\right) \cr
