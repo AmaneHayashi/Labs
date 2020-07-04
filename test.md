@@ -2,7 +2,7 @@ $$
 f\left(
    \left[ 
      \frac{
-       1+\left\{x,y\right\}
+       1+\{x,y\}
      }{
        \left(
           \frac{x}{y}+\frac{y}{x}
