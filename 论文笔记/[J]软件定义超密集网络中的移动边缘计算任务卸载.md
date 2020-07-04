@@ -76,6 +76,7 @@
   - 移动云计算因为减少任务执行时间、减少设备能耗广泛应用，但通过蜂窝网络将任务卸载到云将产生很大**延迟**
   - 移动边缘计算应运而生，研究任务卸载与资源分配，但大多数工作考虑**单个***MEC*服务器，考虑多服务器的*MEC*未考虑到*UDN*
   - 本文设计用于*UDN*中*MEC*的*SDN*任务卸载，并提出有效的任务卸载方案
+![文献综述](https://cdn.jsdelivr.net/gh/AmaneHayashi/PictureBed/20200704230601.png)
 
 ## 3 系统模型与问题描述
 ### 3.1 *SD-UDN*架构
@@ -96,6 +97,7 @@
     - 移动设备选择最近的*BS*进行任务请求
     - *BS*将相应的任务请求发送到*SD-UDN*控制器
     - *SD-UDN*控制器更新所有信息表，**根据任务的延迟和能耗，给出移动设备的任务卸载策略和边缘云的资源分配策略**
+![*SD-UDN*架构](https://cdn.jsdelivr.net/gh/AmaneHayashi/PictureBed/20200704230456.png)
 ### 3.2 网络模型
   - *SD-UDN*共有$n$个基站，每个基站有**一个**边缘云，边缘云集合为$B=\{b_1,b_2,\cdots,b_n\}$
   - 每个移动设备有**一个**任务，移动设备集合为$U=\{u_1,u_2,\cdots,u_m\}$
@@ -176,14 +178,8 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
     - 利用*KKT*条件求出$\kappa$的值
       $$
       \begin{cases}
-      \frac{2\omega_i}{\left(\kappa_i^j\right)^3f_j^c}, &if\ i=j \cr 
-      0, &otherwise
-      \end{cases}
-      $$
-      $$
-      \begin{cases}
-      \nabla f\left(\tilde{\kappa}_1^j,\tilde{\kappa}_2^j,\cdots,\tilde{\kappa}_n^j\right)+\sum\limits_{j}\nu_j\nabla\left(\sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1\right)=0 &\cr 
-      \sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1=0&
+      \nabla f\left(\tilde{\kappa}_1^j,\tilde{\kappa}_2^j,\cdots,\tilde{\kappa}_n^j\right)+\sum\limits_{j}\nu_j\nabla\left(\sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1\right)=0 \cr 
+      \sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1=0
       \end{cases} \Longrightarrow \kappa_i^{*}=\frac{\sqrt{\omega_i}}{\sum_{i\in o_j}\sqrt{\omega_i}}
       $$
     - 将求出的$\kappa$代入原优化函数，得出优化函数的最优值
@@ -269,12 +265,14 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
   - 随机卸载：随机选择任务卸载到边缘云或本地，根据*KKT*条件分配计算资源
   - 统一卸载：所有任务根据电池容量分为两部分，一部分卸载一部分本地，根据*KKT*条件分配计算资源
   - 仿真结论：从资源利用率上看，随机卸载，统一卸载和*SDTO*的资源利用率分别为$75％$，$80％$和$92％$
+![算法对比仿真结果](https://cdn.jsdelivr.net/gh/AmaneHayashi/PictureBed/20200704230647.png)
 
 ### 5.3 计算量/数据大小对卸载性能的影响
   - 任务的计算量/数据大小越大，任务持续时间越长，成本越高
   - 与随机卸载和统一卸载相比，我们提出的*SDTO*具有**更短的任务持续时间和更低的成本**
   - 计算量/数据大小遵循帕累托分布时，曲线趋势不像正态分布和均匀分布那样平滑，这是因为其具有长尾效应
   - **数据大小对任务持续时间和成本的影响低于计算量**
+![计算量/数据大小对卸载性能的影响](https://cdn.jsdelivr.net/gh/AmaneHayashi/PictureBed/20200704230742.png)
 
 ## 6 结论 
   - 提出*SD-UDN*的体系结构
