@@ -144,7 +144,7 @@
   - 优化目标：**最小化全部用户设备的平均处理时延**（*NP-hard*问题）
   $$
   \begin{aligned}
-  &\min && E(\mathbf{x,\gamma,\kappa}), \\
+  &\min && E(\mathbf{x,\gamma,\kappa}), \cr
   &s.t. && C_1 \sim C_4
   \end{aligned}
   $$
