@@ -182,8 +182,8 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
       $$
       $$
       \begin{cases}
-      \nabla f\left(\tilde{\kappa}_1^j,\tilde{\kappa}_2^j,\cdots,\tilde{\kappa}_n^j\right)+\sum\limits_{j}\nu_j\nabla\left(\sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1\right)=0 \cr 
-      \sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1=0
+      \nabla f\left(\tilde{\kappa}_1^j,\tilde{\kappa}_2^j,\cdots,\tilde{\kappa}_n^j\right)+\sum\limits_{j}\nu_j\nabla\left(\sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1\right)=0 &\cr 
+      \sum\limits_{i\in o_j}\tilde{\kappa}_i^j-1=0&
       \end{cases} \Longrightarrow \kappa_i^{*}=\frac{\sqrt{\omega_i}}{\sum_{i\in o_j}\sqrt{\omega_i}}
       $$
     - 将求出的$\kappa$代入原优化函数，得出优化函数的最优值
