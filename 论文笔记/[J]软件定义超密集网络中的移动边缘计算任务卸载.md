@@ -173,7 +173,7 @@ $$f(\mathbf{x,\gamma,\kappa})=\sum\limits_{i=1}^{m}\left[x_{i}\frac{\omega_i}{f_
   - 利用*KKT*条件求解
     - 将原优化函数写成*Lagrange*函数
     $$L(\kappa,\nu)=f(\kappa,\gamma^0)+\sum\limits_{j}\nu_j\left(\sum\limits_{i\in o_j}\kappa_i^j-1\right)$$
-    - 利用*KKT*条件求出$\kappa^*$的值
+    - 利用*KKT*条件求出$\kappa$的值
     $$
     \begin{aligned}
     & \begin{cases}
