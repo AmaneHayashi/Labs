@@ -1,8 +1,8 @@
 # 日常工作安排
 
 ## 0 打开HTML文件
-- 在链接前添加http://htmlpreview.github.io/?
-- 在https://amanehayashi.github.io/Labs/后添加文件地址
+- 使用github的[HTML预览](http://htmlpreview.github.io/)打开
+- 在[我的github.io](https://amanehayashi.github.io/Labs/)后添加文件地址
 
 ## 1 未来规划
 - 优化*KM*算法，分析在某些情形下该算法不能准确求出最优解的原因
